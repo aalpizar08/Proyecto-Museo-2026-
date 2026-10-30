@@ -1,0 +1,8 @@
+# Copie este archivo como config/db.properties y ajuste los datos de su servidor MySQL.
+# Si el archivo no existe o la conexión falla, la aplicación muestra una ventana
+# para ingresar estos datos y los guarda automáticamente.
+db.host=localhost
+db.puerto=3306
+db.nombre=mahn_db
+db.usuario=root
+db.clave=

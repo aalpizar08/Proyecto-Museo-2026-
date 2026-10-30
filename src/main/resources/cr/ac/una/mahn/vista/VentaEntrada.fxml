@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+
+<!-- Interfaz No. 2 - Venta de entrada -->
+<ScrollPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="cr.ac.una.mahn.controlador.VentaEntradaController"
+            fitToWidth="true" styleClass="scroll-pantalla">
+    <VBox styleClass="pantalla">
+        <HBox alignment="CENTER_LEFT" styleClass="encabezado">
+            <VBox>
+                <Label text="ENTRADAS" styleClass="supertitulo"/>
+                <Label text="VENDER ENTRADA" styleClass="titulo-pantalla"/>
+            </VBox>
+            <Region HBox.hgrow="ALWAYS"/>
+            <Label fx:id="lblFecha" styleClass="etiqueta-fecha"/>
+        </HBox>
+
+        <HBox spacing="16">
+            <VBox styleClass="tarjeta" spacing="12" HBox.hgrow="ALWAYS">
+                <GridPane hgap="12" vgap="10">
+                    <columnConstraints>
+                        <ColumnConstraints minWidth="150"/>
+                        <ColumnConstraints hgrow="ALWAYS"/>
+                    </columnConstraints>
+                    <Label text="Nombre del visitante:" styleClass="etiqueta-campo"/>
+                    <TextField fx:id="txtVisitante" promptText="Nombre y apellidos" GridPane.columnIndex="1"/>
+                    <Label text="Tipo de tarjeta:" styleClass="etiqueta-campo" GridPane.rowIndex="1"/>
+                    <HBox spacing="12" alignment="CENTER_LEFT" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                        <ComboBox fx:id="cmbTarjeta" promptText="Seleccione la tarjeta" prefWidth="230"/>
+                        <Label fx:id="lblComision" styleClass="texto-suave"/>
+                    </HBox>
+                    <Label text="Entrada a (museo):" styleClass="etiqueta-campo" GridPane.rowIndex="2"/>
+                    <ComboBox fx:id="cmbMuseo" promptText="Seleccione el museo" maxWidth="Infinity"
+                              GridPane.columnIndex="1" GridPane.rowIndex="2"/>
+                </GridPane>
+                <HBox alignment="CENTER_LEFT">
+                    <Label text="Salas disponibles (marque una o varias)" styleClass="subtitulo"/>
+                    <Region HBox.hgrow="ALWAYS"/>
+                    <CheckBox fx:id="chkTodas" text="Seleccionar todas"/>
+                </HBox>
+                <ListView fx:id="lstSalas" prefHeight="236" VBox.vgrow="ALWAYS"/>
+                <Label text="L-S: precio de lunes a sábado   ·   D: precio diferido de domingo (precios en dólares)"
+                       styleClass="texto-ayuda"/>
+            </VBox>
+
+            <VBox styleClass="tarjeta" spacing="10" minWidth="300" maxWidth="320">
+                <Label text="Día de la visita" styleClass="subtitulo"/>
+                <StackPane fx:id="contenedorCalendario"/>
+                <Label fx:id="lblInfoFecha" wrapText="true" styleClass="texto-suave"/>
+                <Region VBox.vgrow="ALWAYS"/>
+                <Button text="AGREGAR" onAction="#agregar" styleClass="boton-primario" maxWidth="Infinity"/>
+            </VBox>
+        </HBox>
+
+        <TableView fx:id="tablaDetalle" prefHeight="210" minHeight="160"/>
+
+        <HBox spacing="14" alignment="CENTER_LEFT" styleClass="tarjeta">
+            <Button fx:id="btnQuitar" text="Quitar seleccionada" onAction="#quitar" styleClass="boton-secundario"/>
+            <Button text="Limpiar todo" onAction="#limpiarTodo" styleClass="boton-secundario"/>
+            <Region HBox.hgrow="ALWAYS"/>
+            <GridPane hgap="14" vgap="2">
+                <Label text="SUBTOTAL:" styleClass="etiqueta-total"/>
+                <Label fx:id="lblSubtotal" styleClass="etiqueta-total" GridPane.columnIndex="1"/>
+                <Label text="IVA (13 %):" styleClass="etiqueta-total" GridPane.rowIndex="1"/>
+                <Label fx:id="lblIva" styleClass="etiqueta-total" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+            </GridPane>
+            <VBox alignment="CENTER_RIGHT">
+                <Label text="TOTAL A PAGAR" styleClass="supertitulo"/>
+                <Label fx:id="lblTotal" styleClass="total-pagar"/>
+            </VBox>
+            <Button text="VENDER" onAction="#vender">
+                <styleClass>
+                    <String fx:value="boton-dorado"/>
+                    <String fx:value="boton-grande"/>
+                </styleClass>
+            </Button>
+        </HBox>
+    </VBox>
+</ScrollPane>

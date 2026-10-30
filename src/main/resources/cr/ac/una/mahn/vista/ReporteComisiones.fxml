@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.chart.BarChart?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+
+<!-- Reporte: cantidad total de pago de comisiones por rango de fechas -->
+<ScrollPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="cr.ac.una.mahn.controlador.ReporteComisionesController"
+            fitToWidth="true" styleClass="scroll-pantalla">
+    <VBox styleClass="pantalla">
+        <HBox alignment="CENTER_LEFT" styleClass="encabezado">
+            <VBox>
+                <Label text="REPORTES" styleClass="supertitulo"/>
+                <Label text="COMISIONES POR TARJETA" styleClass="titulo-pantalla"/>
+            </VBox>
+            <Region HBox.hgrow="ALWAYS"/>
+            <Label fx:id="lblFecha" styleClass="etiqueta-fecha"/>
+        </HBox>
+
+        <Label wrapText="true" styleClass="texto-suave"
+               text="Total de comisión que se le debe pagar a cada una de las marcas autorizadas de tarjetas por las entradas vendidas en el rango de fechas seleccionado (ambas fechas inclusive)."/>
+
+        <HBox spacing="10" alignment="CENTER_LEFT" styleClass="tarjeta">
+            <HBox fx:id="contenedorFechas" spacing="10" alignment="CENTER_LEFT"/>
+            <Button text="GENERAR" onAction="#generar" styleClass="boton-primario"/>
+            <Region HBox.hgrow="ALWAYS"/>
+            <Button fx:id="btnPdf" text="Exportar a PDF" onAction="#exportarPdf" styleClass="boton-dorado"/>
+        </HBox>
+
+        <TableView fx:id="tabla" prefHeight="232" minHeight="200"/>
+
+        <HBox spacing="14">
+            <VBox styleClass="indicador" HBox.hgrow="ALWAYS">
+                <Label fx:id="lblTransacciones" styleClass="indicador-valor"/>
+                <Label text="Transacciones en el periodo" styleClass="indicador-etiqueta"/>
+            </VBox>
+            <VBox styleClass="indicador" HBox.hgrow="ALWAYS">
+                <Label fx:id="lblProcesado" styleClass="indicador-valor"/>
+                <Label text="Monto procesado con tarjetas" styleClass="indicador-etiqueta"/>
+            </VBox>
+            <VBox styleClass="indicador" HBox.hgrow="ALWAYS">
+                <Label fx:id="lblComision" styleClass="indicador-valor"/>
+                <Label text="Total de comisiones a pagar" styleClass="indicador-etiqueta"/>
+            </VBox>
+        </HBox>
+
+        <BarChart fx:id="grafico" title="Comisión a pagar por marca (USD)" legendVisible="false" animated="false"
+                  prefHeight="300" minHeight="260" styleClass="tarjeta">
+            <xAxis>
+                <CategoryAxis side="BOTTOM"/>
+            </xAxis>
+            <yAxis>
+                <NumberAxis side="LEFT" label="USD"/>
+            </yAxis>
+        </BarChart>
+    </VBox>
+</ScrollPane>

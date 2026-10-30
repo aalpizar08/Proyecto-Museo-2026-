@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+
+<!-- Ventana principal: menú lateral (como en las interfaces del enunciado) y área de contenido -->
+<BorderPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="cr.ac.una.mahn.controlador.PrincipalController">
+    <left>
+        <ScrollPane fitToWidth="true" fitToHeight="true" hbarPolicy="NEVER" styleClass="barra-lateral-scroll">
+            <VBox styleClass="barra-lateral">
+                <VBox alignment="CENTER" spacing="4" styleClass="logo-caja">
+                    <ImageView fx:id="imgLogo" fitWidth="92" fitHeight="92" preserveRatio="true"/>
+                    <Label text="MAHN 3.0" styleClass="logo-titulo"/>
+                    <Label text="Museo Americano de Historia Natural" styleClass="logo-subtitulo" wrapText="true"
+                           textAlignment="CENTER"/>
+                </VBox>
+
+                <Button fx:id="btnInicio" text="INICIO" onAction="#mostrarInicio" styleClass="boton-menu"
+                        maxWidth="Infinity"/>
+
+                <Button fx:id="btnMantenimientos" text="MANTENIMIENTOS" onAction="#alternarMantenimientos"
+                        styleClass="boton-menu" maxWidth="Infinity"/>
+                <VBox fx:id="subMantenimientos" styleClass="submenu">
+                    <Button fx:id="btnMuseos" text="Museos" onAction="#abrirMuseos" styleClass="boton-submenu" maxWidth="Infinity"/>
+                    <Button fx:id="btnSalas" text="Salas" onAction="#abrirSalas" styleClass="boton-submenu" maxWidth="Infinity"/>
+                    <Button fx:id="btnColecciones" text="Colecciones" onAction="#abrirColecciones" styleClass="boton-submenu" maxWidth="Infinity"/>
+                    <Button fx:id="btnEspecies" text="Especies" onAction="#abrirEspecies" styleClass="boton-submenu" maxWidth="Infinity"/>
+                    <Button fx:id="btnTematicas" text="Temáticas" onAction="#abrirTematicas" styleClass="boton-submenu" maxWidth="Infinity"/>
+                    <Button fx:id="btnPrecios" text="Precios" onAction="#abrirPrecios" styleClass="boton-submenu" maxWidth="Infinity"/>
+                    <Button fx:id="btnComisiones" text="Comisiones" onAction="#abrirComisiones" styleClass="boton-submenu" maxWidth="Infinity"/>
+                </VBox>
+
+                <Button fx:id="btnEntradas" text="ENTRADAS" onAction="#alternarEntradas" styleClass="boton-menu"
+                        maxWidth="Infinity"/>
+                <VBox fx:id="subEntradas" styleClass="submenu">
+                    <Button fx:id="btnVender" text="Vender entrada" onAction="#abrirVenta" styleClass="boton-submenu" maxWidth="Infinity"/>
+                    <Button fx:id="btnValidar" text="Validar entrada" onAction="#abrirValidacion" styleClass="boton-submenu" maxWidth="Infinity"/>
+                    <Button fx:id="btnHistorial" text="Historial de entradas" onAction="#abrirHistorial" styleClass="boton-submenu" maxWidth="Infinity"/>
+                </VBox>
+
+                <Button fx:id="btnValoracion" text="VALORACIÓN" onAction="#abrirValoracion" styleClass="boton-menu"
+                        maxWidth="Infinity"/>
+
+                <Button fx:id="btnReportes" text="REPORTES" onAction="#alternarReportes" styleClass="boton-menu"
+                        maxWidth="Infinity"/>
+                <VBox fx:id="subReportes" styleClass="submenu">
+                    <Button fx:id="btnReporteComisiones" text="Comisiones por fechas" onAction="#abrirReporteComisiones" styleClass="boton-submenu" maxWidth="Infinity"/>
+                    <Button fx:id="btnReporteValoraciones" text="Valoración de salas" onAction="#abrirReporteValoraciones" styleClass="boton-submenu" maxWidth="Infinity"/>
+                </VBox>
+
+                <Region VBox.vgrow="ALWAYS" minHeight="16"/>
+                <Label fx:id="lblConexion" styleClass="estado-conexion" wrapText="true"/>
+            </VBox>
+        </ScrollPane>
+    </left>
+    <center>
+        <StackPane fx:id="contenedor" styleClass="contenedor"/>
+    </center>
+</BorderPane>

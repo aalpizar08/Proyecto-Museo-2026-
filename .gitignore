@@ -1,0 +1,21 @@
+# Compilación de Maven
+target/
+
+# NetBeans / otros IDE
+nbproject/private/
+.idea/
+.vscode/
+*.iml
+
+# Configuración local con la contraseña de MySQL (usar config/db.properties.example)
+/config/db.properties
+
+# Archivos generados por la aplicación en tiempo de ejecución
+/generados/
+/imagenes/
+
+# Sistema operativo
+Thumbs.db
+desktop.ini
+.DS_Store
+*.log

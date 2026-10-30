@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+
+<!-- Historial de entradas vendidas: permite volver a generar el QR y el comprobante -->
+<VBox xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="cr.ac.una.mahn.controlador.HistorialEntradasController" styleClass="pantalla">
+    <HBox alignment="CENTER_LEFT" styleClass="encabezado">
+        <VBox>
+            <Label text="ENTRADAS" styleClass="supertitulo"/>
+            <Label text="HISTORIAL DE ENTRADAS" styleClass="titulo-pantalla"/>
+        </VBox>
+        <Region HBox.hgrow="ALWAYS"/>
+        <Label fx:id="lblFecha" styleClass="etiqueta-fecha"/>
+    </HBox>
+
+    <HBox spacing="10" alignment="CENTER_LEFT" styleClass="tarjeta">
+        <Label text="Visitante o código:" styleClass="etiqueta-campo"/>
+        <TextField fx:id="txtFiltro" onAction="#filtrar" prefWidth="260" promptText="Escriba para buscar…"/>
+        <Label text="Tarjeta:" styleClass="etiqueta-campo"/>
+        <ComboBox fx:id="cmbTarjeta" prefWidth="200"/>
+        <Button text="FILTRAR" onAction="#filtrar" styleClass="boton-primario"/>
+        <Button text="Limpiar" onAction="#limpiar" styleClass="boton-secundario"/>
+    </HBox>
+
+    <TableView fx:id="tabla" VBox.vgrow="ALWAYS"/>
+
+    <HBox spacing="10" alignment="CENTER_LEFT">
+        <Label fx:id="lblConteo" styleClass="texto-suave"/>
+        <Region HBox.hgrow="ALWAYS"/>
+        <Button fx:id="btnQr" text="Ver código QR" onAction="#verQr" styleClass="boton-secundario"/>
+        <Button fx:id="btnPdf" text="Abrir comprobante PDF" onAction="#abrirPdf" styleClass="boton-primario"/>
+    </HBox>
+</VBox>

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+
+<!-- Pantalla principal con información del museo e indicadores -->
+<ScrollPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="cr.ac.una.mahn.controlador.InicioController"
+            fitToWidth="true" styleClass="scroll-pantalla">
+    <VBox styleClass="pantalla">
+        <HBox alignment="CENTER_LEFT" styleClass="encabezado">
+            <VBox>
+                <Label text="BIENVENIDO A" styleClass="supertitulo"/>
+                <Label text="MAHN 3.0" styleClass="titulo-pantalla"/>
+            </VBox>
+            <Region HBox.hgrow="ALWAYS"/>
+            <Label fx:id="lblFecha" styleClass="etiqueta-fecha"/>
+        </HBox>
+
+        <HBox styleClass="hero" spacing="24" alignment="CENTER_LEFT">
+            <ImageView fx:id="imgLogo" fitWidth="110" fitHeight="110" preserveRatio="true"/>
+            <VBox spacing="8" HBox.hgrow="ALWAYS">
+                <Label text="Museo Americano de Historia Natural" styleClass="hero-titulo" wrapText="true"/>
+                <Label styleClass="hero-texto" wrapText="true"
+                       text="Ubicado en el Upper West Side de Manhattan, en Nueva York, frente a Central Park, es uno de los museos de historia natural más grandes y famosos del mundo. Sus 27 edificios interconectados albergan 46 salas de exposición permanentes, laboratorios de investigación y su famosa biblioteca. Su colección supera los 32 millones de especímenes, de los cuales solo una pequeña parte puede exhibirse a la vez."/>
+            </VBox>
+        </HBox>
+
+        <FlowPane fx:id="panelIndicadores" hgap="14" vgap="14"/>
+
+        <HBox spacing="16">
+            <VBox styleClass="tarjeta" spacing="12" HBox.hgrow="ALWAYS">
+                <Label text="Salas por área de investigación" styleClass="subtitulo"/>
+                <FlowPane fx:id="panelAreas" hgap="8" vgap="8"/>
+            </VBox>
+            <VBox styleClass="tarjeta" spacing="10" minWidth="280" maxWidth="300">
+                <Label text="Accesos rápidos" styleClass="subtitulo"/>
+                <Button text="Vender entrada" onAction="#irAVenta" styleClass="boton-primario" maxWidth="Infinity"/>
+                <Button text="Validar entrada" onAction="#irAValidacion" styleClass="boton-secundario" maxWidth="Infinity"/>
+                <Button text="Valorar una sala" onAction="#irAValoracion" styleClass="boton-secundario" maxWidth="Infinity"/>
+                <Button text="Reporte de comisiones" onAction="#irAReportes" styleClass="boton-secundario" maxWidth="Infinity"/>
+            </VBox>
+        </HBox>
+    </VBox>
+</ScrollPane>

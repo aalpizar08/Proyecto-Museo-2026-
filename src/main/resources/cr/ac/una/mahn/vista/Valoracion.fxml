@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import cr.ac.una.mahn.vista.LectorQR?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+
+<!--
+    Interfaz No. 4 - Valoración de salas. Hasta leer el código QR de la sala solo se
+    muestran el título y el campo de lectura.
+-->
+<ScrollPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="cr.ac.una.mahn.controlador.ValoracionController"
+            fitToWidth="true" styleClass="scroll-pantalla">
+    <VBox styleClass="pantalla">
+        <HBox alignment="CENTER_LEFT" styleClass="encabezado">
+            <VBox>
+                <Label text="VALORACIÓN" styleClass="supertitulo"/>
+                <Label text="VALORACIÓN DE SALAS" styleClass="titulo-pantalla"/>
+            </VBox>
+            <Region HBox.hgrow="ALWAYS"/>
+            <Label fx:id="lblFecha" styleClass="etiqueta-fecha"/>
+        </HBox>
+
+        <HBox alignment="CENTER">
+            <LectorQR fx:id="lector" HBox.hgrow="ALWAYS"/>
+        </HBox>
+
+        <VBox fx:id="panelFicha" spacing="16">
+            <!-- Ficha de la sala y promedio de valoración -->
+            <HBox styleClass="tarjeta" spacing="20" alignment="CENTER_LEFT">
+                <VBox spacing="4" HBox.hgrow="ALWAYS">
+                    <Label fx:id="lblSala" styleClass="titulo-sala" wrapText="true"/>
+                    <Label fx:id="lblMuseoArea" styleClass="texto-suave" wrapText="true"/>
+                    <Label fx:id="lblDescripcion" wrapText="true"/>
+                </VBox>
+                <VBox alignment="CENTER" spacing="4" minWidth="210">
+                    <Label text="VALORACIÓN PROMEDIO" styleClass="supertitulo"/>
+                    <Label fx:id="lblPromedio" styleClass="promedio-grande"/>
+                    <HBox fx:id="contenedorPromedio" alignment="CENTER"/>
+                    <Label fx:id="lblCantidad" styleClass="texto-suave"/>
+                </VBox>
+            </HBox>
+
+            <!-- Carrusel de especies o temáticas -->
+            <HBox spacing="16">
+                <VBox styleClass="tarjeta" spacing="10" alignment="TOP_CENTER">
+                    <HBox spacing="8" alignment="CENTER_LEFT" maxWidth="Infinity">
+                        <Label text="◆" styleClass="rombo"/>
+                        <Label fx:id="lblTipoElementos" styleClass="etiqueta-tipo-elementos"/>
+                    </HBox>
+                    <HBox spacing="10" alignment="CENTER">
+                        <Button fx:id="btnAnterior" text="◀" onAction="#anterior" styleClass="boton-carrusel"/>
+                        <StackPane styleClass="marco-imagen" minWidth="452" minHeight="300" maxWidth="452" maxHeight="300">
+                            <ImageView fx:id="imgElemento" fitWidth="440" fitHeight="288" preserveRatio="true"/>
+                            <Label fx:id="lblSinImagen" text="Sin imagen" styleClass="texto-sin-imagen"/>
+                        </StackPane>
+                        <Button fx:id="btnSiguiente" text="▶" onAction="#siguiente" styleClass="boton-carrusel"/>
+                    </HBox>
+                    <Label fx:id="lblIndice" styleClass="texto-suave"/>
+                </VBox>
+                <VBox styleClass="tarjeta" spacing="10" HBox.hgrow="ALWAYS">
+                    <Label fx:id="lblNombre" styleClass="nombre-elemento" wrapText="true"/>
+                    <Label fx:id="lblSubtitulo" styleClass="subtitulo-elemento" wrapText="true"/>
+                    <GridPane hgap="10" vgap="8">
+                        <columnConstraints>
+                            <ColumnConstraints minWidth="90"/>
+                            <ColumnConstraints hgrow="ALWAYS"/>
+                        </columnConstraints>
+                        <Label text="Colección:" styleClass="etiqueta-campo"/>
+                        <Label fx:id="lblColeccion" wrapText="true" GridPane.columnIndex="1"/>
+                        <Label text="Tipo:" styleClass="etiqueta-campo" GridPane.rowIndex="1"/>
+                        <Label fx:id="lblTipo" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+                        <Label text="Época:" styleClass="etiqueta-campo" GridPane.rowIndex="2"/>
+                        <Label fx:id="lblEpoca" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
+                        <Label text="Detalle:" styleClass="etiqueta-campo" GridPane.rowIndex="3" GridPane.valignment="TOP"/>
+                        <Label fx:id="lblDetalle" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="3"/>
+                    </GridPane>
+                    <Label fx:id="lblDatos" wrapText="true" styleClass="datos-especie"/>
+                </VBox>
+            </HBox>
+
+            <!-- Valoración anónima -->
+            <HBox spacing="16">
+                <VBox styleClass="tarjeta" spacing="10" HBox.hgrow="ALWAYS">
+                    <Label text="¿Desea agregar una valoración?" styleClass="subtitulo"/>
+                    <HBox fx:id="contenedorSelector" spacing="14" alignment="CENTER_LEFT">
+                        <Label fx:id="lblSeleccion" styleClass="texto-suave"/>
+                    </HBox>
+                    <TextArea fx:id="txtObservacion" promptText="Escriba una observación (opcional)" prefRowCount="3"
+                              wrapText="true"/>
+                    <HBox alignment="CENTER_LEFT" spacing="10">
+                        <Label text="La valoración es anónima." styleClass="texto-ayuda"/>
+                        <Region HBox.hgrow="ALWAYS"/>
+                        <Label fx:id="lblContador" styleClass="texto-ayuda"/>
+                        <Button text="Enviar valoración" onAction="#enviarValoracion" styleClass="boton-primario"/>
+                    </HBox>
+                </VBox>
+                <VBox styleClass="tarjeta" spacing="8" minWidth="320" maxWidth="380">
+                    <Label text="Comentarios recientes" styleClass="subtitulo"/>
+                    <VBox fx:id="listaComentarios" spacing="8"/>
+                </VBox>
+            </HBox>
+        </VBox>
+    </VBox>
+</ScrollPane>

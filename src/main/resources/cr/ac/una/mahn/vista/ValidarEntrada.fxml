@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import cr.ac.una.mahn.vista.LectorQR?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+
+<!--
+    Interfaz No. 3 - Validar entrada. Hasta leer el código QR solo se muestran el título
+    y el campo de lectura; el resto (fecha y resultado) se muestra después.
+-->
+<ScrollPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="cr.ac.una.mahn.controlador.ValidarEntradaController"
+            fitToWidth="true" styleClass="scroll-pantalla">
+    <VBox styleClass="pantalla">
+        <HBox alignment="CENTER_LEFT" styleClass="encabezado">
+            <VBox>
+                <Label text="ENTRADAS" styleClass="supertitulo"/>
+                <Label text="VALIDAR ENTRADA" styleClass="titulo-pantalla"/>
+            </VBox>
+            <Region HBox.hgrow="ALWAYS"/>
+            <Label fx:id="lblFecha" styleClass="etiqueta-fecha"/>
+        </HBox>
+
+        <HBox alignment="CENTER">
+            <LectorQR fx:id="lector" HBox.hgrow="ALWAYS"/>
+        </HBox>
+
+        <VBox fx:id="panelResultado" spacing="14">
+            <VBox fx:id="bannerEstado" styleClass="banner" spacing="4">
+                <Label fx:id="lblEstado" styleClass="banner-titulo"/>
+                <Label fx:id="lblDetalleEstado" wrapText="true"/>
+            </VBox>
+
+            <HBox spacing="16">
+                <GridPane styleClass="tarjeta" hgap="12" vgap="10" minWidth="330" maxWidth="360">
+                    <columnConstraints>
+                        <ColumnConstraints minWidth="90"/>
+                        <ColumnConstraints hgrow="ALWAYS"/>
+                    </columnConstraints>
+                    <Label text="Entrada:" styleClass="etiqueta-campo"/>
+                    <Label fx:id="lblCodigo" styleClass="codigo-entrada" GridPane.columnIndex="1"/>
+                    <Label text="Visitante:" styleClass="etiqueta-campo" GridPane.rowIndex="1"/>
+                    <Label fx:id="lblVisitante" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+                    <Label text="Comprada:" styleClass="etiqueta-campo" GridPane.rowIndex="2"/>
+                    <Label fx:id="lblCompra" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
+                    <Label text="Pago:" styleClass="etiqueta-campo" GridPane.rowIndex="3"/>
+                    <Label fx:id="lblTarjeta" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="3"/>
+                </GridPane>
+                <VBox styleClass="tarjeta" spacing="8" HBox.hgrow="ALWAYS">
+                    <Label text="Hoy puede ingresar a las siguientes salas:" styleClass="subtitulo"/>
+                    <TableView fx:id="tablaHoy" prefHeight="200"/>
+                </VBox>
+            </HBox>
+
+            <VBox styleClass="tarjeta" spacing="8">
+                <Label text="Otras fechas incluidas en la entrada" styleClass="subtitulo"/>
+                <TableView fx:id="tablaOtras" prefHeight="160"/>
+            </VBox>
+
+            <Label text="¡DISFRUTE DEL ARTE Y LA HISTORIA!" styleClass="lema" maxWidth="Infinity" alignment="CENTER"/>
+        </VBox>
+    </VBox>
+</ScrollPane>
